@@ -9,8 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Form {
@@ -32,4 +33,5 @@ model FormSubmission {
   createdAt DateTime @default(now())
   formId    String
   form      Form     @relation(fields: [formId], references: [id])
+  content   String
 }
